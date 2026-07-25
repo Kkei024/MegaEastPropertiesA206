@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<head>
+    <!--    storage.js exists to initialise data and functions for cleaner and easier execution   -->
+    <script src="storage.js"></script>
+    <link rel="stylesheet" href="design.css">
+</head>
+
+
+<body>
+    <!--    MENU BAR    -->
+    <div class="menu">
+
+        <div class="button" id="menuButton" style="background-image: url();">
+            <svg class="buttongraphic" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50" >
+                <path stroke="white" fill="white" d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
+            </svg>
+        </div>
+        
+        
+        <img class="logo" onclick="location.href = 'index.html'" src="images/Logo.png">
+        <h3 class="logo" onclick="location.href = 'index.html'">Properties Inc. <br> Area 206</h3>
+
+    </div>
+    <div class="filler"></div>
+    <div class="sidemenu" id="side">
+        <ul class="list" id="stuff">
+            <script src="list.js"></script>
+        </ul>
+    </div>
+
+    <div class="cont">
+        <div class="thumbnail" id="thumbnail"><div class="overlay"></div></div>
+        <h1 class="title" id="name">Select a property from the list from the left</h1>
+        <table class="details">
+            <tr>
+                <td>
+                    <h3>Price: </h3>
+                </td>
+                <td>
+                    <h3 id="price">Placeholder</h3>
+                </td><td class="filler"></td>
+                <td>
+                    <h3>Location: </h3>
+                </td>
+                <td>
+                    <h3 id="location">Placeholder</h3>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>Type: </h3>
+                </td>
+                <td>
+                    <h3 id="type">Placeholder</h3>
+                </td><td class="filler"></td>
+                <td>
+                    <h3>Address: </h3>
+                </td>
+                <td>
+                    <h3 id="address">Placeholder</h3>
+                </td>
+            </tr>
+        </table>
+
+        <p id="description" class="desc"></p>
+        
+        <script src="content.js"></script>
+    </div>
+</body>
+
+<footer>
+
+</footer>
