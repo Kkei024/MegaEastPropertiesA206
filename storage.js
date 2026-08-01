@@ -1,19 +1,79 @@
 const name = [
     "Palo Alto",
     "The Perch",
-    "test3",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
+    "Palo Alto",
+    "The Perch",
+    "Tracen",
 ];
 
 const type = [
     "Lot",
     "House",
-    "condo"
+    "Dorm"
 ];
 
 const loc = [
     "Baras",
     "Antipolo",
-    "Pasig"
+    "Tokyo"
 ];
 
 const address = [
@@ -66,6 +126,7 @@ Spacious Lanai with Mountain View
     `test`
 ]
 
+
 const thumbnails = [
     "images/paloAltoPH.jpg",
     "images/thePerch.jpg",
@@ -80,7 +141,7 @@ function clear() {
     list.innerHTML = ``;
 }
 
-//display all
+//display all list items
 function display() {
     name.forEach((element, index) => {
         list.innerHTML += `
@@ -103,17 +164,18 @@ function display() {
 })
 }
 
+//change style of hovered list item
 function showCurrent(highlight) {
     document.getElementById(`item${highlight}`).classList.add("currentPage");
 }
 
-let image;
-
-function changeThumb(setThumb) {
+//change header image in content
+let image; function changeThumb(setThumb) {
     image = document.getElementById('thumbnail')
     image.style.backgroundImage = `url(${thumbnails[setThumb]})`;
 }
 
+//change details and description in content
 function content(contIndex) {
     document.getElementById('name').innerText = name[contIndex];
 
@@ -127,6 +189,26 @@ function content(contIndex) {
 
     document.getElementById('location').innerText = loc[contIndex];
     document.getElementById('type').innerText = type[contIndex];
-    document.getElementById('address').innerText = name[contIndex];
+    document.getElementById('address').innerText = address[contIndex];
     document.getElementById('description').innerText = description[contIndex];
+}
+
+function scrolling(scroller, scrolled) {
+    let contHeight = scrolled.scrollHeight - window.innerHeight;
+    console.log(`Height is ${contHeight}px`);
+
+    scrolled.addEventListener("scroll", () => {
+        let progress = (scrolled.scrollTop);
+        let perc = (progress / contHeight);
+        console.log(perc);
+        console.log(`progress is ${progress}`);
+        console.log(`cont height is ${contHeight}`);
+
+        if(progress < contHeight) {
+            scroller.style.top = `calc(${perc * 100}% - (20% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
+            console.log(`moving to ${perc}%`);
+        }
+        
+    })
+   
 }

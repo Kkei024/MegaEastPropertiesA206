@@ -3,7 +3,8 @@
 <head>
     <!--    storage.js exists to initialise data and functions for cleaner and easier execution   -->
     <script src="storage.js"></script>
-    <link rel="stylesheet" href="design.css">
+
+    <link rel="stylesheet" href="index.css">
 </head>
 
 
@@ -16,6 +17,11 @@
                 <path stroke="white" fill="white" d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
             </svg>
         </div>
+
+        <div><h3>Search</h3></div>
+        <div><search><form>
+            <input type="text" name="searcher" id="inpsrch" for="">
+        </form></search></div>
         
         
         <img class="logo" onclick="location.href = 'index.html'" src="images/Logo.png">
@@ -23,6 +29,7 @@
 
     </div>
     <div class="filler"></div>
+    <div class="SMscroll" id="sideMenuScroll"></div>
     <div class="sidemenu" id="side">
         <ul class="list" id="stuff">
             <script src="list.js"></script>
@@ -35,30 +42,22 @@
         <table class="details">
             <tr>
                 <td>
-                    <h3>Price: </h3>
-                </td>
-                <td>
-                    <h3 id="price">Placeholder</h3>
+                    <h3>Price:</h3>
+                    <h3 id="price" class="data">Placeholder</h3>
                 </td><td class="filler"></td>
                 <td>
                     <h3>Location: </h3>
-                </td>
-                <td>
-                    <h3 id="location">Placeholder</h3>
+                    <h3 id="location" class="data">Placeholder</h3>
                 </td>
             </tr>
             <tr>
                 <td>
                     <h3>Type: </h3>
-                </td>
-                <td>
-                    <h3 id="type">Placeholder</h3>
+                    <h3 id="type" class="data">Placeholder</h3>
                 </td><td class="filler"></td>
                 <td>
                     <h3>Address: </h3>
-                </td>
-                <td>
-                    <h3 id="address">Placeholder</h3>
+                    <h3 id="address" class="data">Placeholder</h3>
                 </td>
             </tr>
         </table>
