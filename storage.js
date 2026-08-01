@@ -1,67 +1,13 @@
 const name = [
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
-    "Palo Alto",
-    "The Perch",
-    "Tracen",
+    "palo_alto",
+    "the_perch",
+    "tracen",
+    "palo_alto",
+    "the_perch",
+    "tracen",
+    "palo_alto",
+    "the_perch",
+    "tracen",
 ];
 
 const type = [
@@ -145,9 +91,9 @@ function clear() {
 function display() {
     name.forEach((element, index) => {
         list.innerHTML += `
-            <div style="background-image: url('${thumbnails[index]}');">
-                <li class="item ${loc[index]} ${name[index]} ${type[index]}" id="item${index}">
-                    <h2>${name[index]}</h2>
+            <div class="${loc[index]} ${name[index]} ${type[index]}" style="background-image: url('${thumbnails[index]}');">
+                <li class="item" id="item${index}">
+                    <h2>${name[index].replace("_", " ")}</h2>
                     <p>${loc[index]}, ${type[index]}</p>
                 </li>
             </div>
@@ -155,13 +101,12 @@ function display() {
     });
     
     name.forEach((element, index) => {
-        //for each item, give it an onclick that sends its index to localStorage so that it persists between page reloads
+        //for each item, give it an onclick that sends its index to sessionStorage so that it persists between page reloads
         document.getElementById(`item${index}`).addEventListener("click", () => {
-            localStorage.setItem("nextPage", index);
-            console.log("logged " + index);
+            sessionStorage.setItem("nextPage", index);
             newPage();
+        })
     })
-})
 }
 
 //change style of hovered list item
@@ -177,7 +122,7 @@ let image; function changeThumb(setThumb) {
 
 //change details and description in content
 function content(contIndex) {
-    document.getElementById('name').innerText = name[contIndex];
+    document.getElementById('name').innerText = name[contIndex].replace("_", " ");
 
     if (price[contIndex] <= 500000) {
         document.getElementById('price').innerText = `₱${price[contIndex].toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/sqm`;
@@ -200,15 +145,61 @@ function scrolling(scroller, scrolled) {
     scrolled.addEventListener("scroll", () => {
         let progress = (scrolled.scrollTop);
         let perc = (progress / contHeight);
-        console.log(perc);
-        console.log(`progress is ${progress}`);
-        console.log(`cont height is ${contHeight}`);
 
         if(progress < contHeight) {
-            scroller.style.top = `calc(${perc * 100}% - (20% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
-            console.log(`moving to ${perc}%`);
+                scroller.style.top = `calc(${perc * 100}% - (20% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
+            }
+        })
+
+        function drag() {
+            let Ypos = scrolled.getBoundingClientRect();
+            var pos;
+    
+    
+            const tracker = (event) => {
+                
+                if (event.type == "touchmove") {
+                    var touch = event.touches[0] || event.changedTouches[0];
+                    pos = touch.pageY;
+                }
+                else {
+                    event.preventDefault();
+                    pos = event.clientY;
+                }
+    
+                
+                let perc = (Math.trunc(pos) - Math.trunc(Ypos.top)) / (Math.trunc(Ypos.bottom) - Math.trunc(Ypos.top))
+                
+                if(perc > 0 && perc < 1.02) {
+                    scroller.style.top = `calc(${perc * 100}% - (10% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
+                    scrolled.scroll({
+                        top: perc * contHeight,
+                    })
+                }
+            }
+    
+            const clicker = (event) => {
+    
+                event.preventDefault();
+                
+                document.addEventListener("mousemove", tracker, true)
+                document.addEventListener("touchmove", tracker, true)
+                
+                document.addEventListener("mouseup", () => {
+                    document.removeEventListener("mousemove", tracker, true);
+    
+                    document.removeEventListener("touchmove", tracker, true);
+                })
+            }
+    
+            scroller.addEventListener("mouseover", () => {
+                scroller.addEventListener("mousedown", clicker, true);
+    
+                scroller.addEventListener("touchstart", clicker, true);
+            })
         }
-        
-    })
-   
+
+    drag()
 }
+
+window.addEventListener("dragstart", (event) => event.preventDefault());

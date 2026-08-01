@@ -3,7 +3,6 @@
 <head>
     <!--    storage.js exists to initialise data and functions for cleaner and easier execution   -->
     <script src="storage.js"></script>
-
     <link rel="stylesheet" href="index.css">
 </head>
 
@@ -11,16 +10,16 @@
 <body>
     <!--    MENU BAR    -->
     <div class="menu">
-
+        
         <div class="button" id="menuButton" style="background-image: url();">
             <svg class="buttongraphic" x="0px" y="0px" width="30" height="30" viewBox="0 0 50 50" >
                 <path stroke="white" fill="white" d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
             </svg>
         </div>
-
-        <div><h3>Search</h3></div>
-        <div><search><form>
-            <input type="text" name="searcher" id="inpsrch" for="">
+        
+        <div><search><form onsubmit="return search()">
+            <input type="submit" value="search">
+            <input type="text" name="s" id="inpsrch">
         </form></search></div>
         
         
@@ -69,5 +68,5 @@
 </body>
 
 <footer>
-
+    <script src="search.js"></script>
 </footer>

@@ -1,10 +1,12 @@
-let currentPage = Number(localStorage.getItem("nextPage"));
+let currentPage = Number(sessionStorage.getItem("nextPage"));
 
 clear();
 
 display();
 
+let bar = document.getElementById('side');
+let thumb = document.getElementById('sideMenuScroll');
 
-scrolling(
-    document.getElementById('sideMenuScroll'),
-    document.getElementById('side'));
+scrolling(thumb, bar);
+
+window.addEventListener("resize", () => {scrolling(thumb, bar)}) 
