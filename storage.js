@@ -153,9 +153,9 @@ function scrolling(scroller, scrolled) {
 
         function drag() {
             let Ypos = scrolled.getBoundingClientRect();
+            let scrollY = scroller.getBoundingClientRect();
             var pos;
-    
-    
+                
             const tracker = (event) => {
                 
                 if (event.type == "touchmove") {
@@ -169,12 +169,10 @@ function scrolling(scroller, scrolled) {
     
                 
                 let perc = (Math.trunc(pos) - Math.trunc(Ypos.top)) / (Math.trunc(Ypos.bottom) - Math.trunc(Ypos.top))
-                
-                if(perc > 0 && perc < 1.02) {
-                    scroller.style.top = `calc(${perc * 100}% - (10% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
-                    scrolled.scroll({
-                        top: perc * contHeight,
-                    })
+
+                if(perc >= 0 && perc <= 1) {
+                    //scroller.style.top = `calc(${perc * 100}% - (10% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
+                    scroller.style.top = `calc(${perc * Ypos.bottom}px - (10% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
                 }
             }
     
@@ -182,21 +180,19 @@ function scrolling(scroller, scrolled) {
     
                 event.preventDefault();
                 
+                console.log("i am being touched")
+
                 document.addEventListener("mousemove", tracker, true)
-                document.addEventListener("touchmove", tracker, true)
                 
                 document.addEventListener("mouseup", () => {
                     document.removeEventListener("mousemove", tracker, true);
-    
-                    document.removeEventListener("touchmove", tracker, true);
                 })
             }
-    
+            
             scroller.addEventListener("mouseover", () => {
-                scroller.addEventListener("mousedown", clicker, true);
-    
-                scroller.addEventListener("touchstart", clicker, true);
+                scroller.addEventListener("mousedown", clicker);
             })
+            scroller.addEventListener("touchmove", tracker, true)
         }
 
     drag()

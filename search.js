@@ -52,7 +52,28 @@ if (searchTerm != "") {
         })
     }
     
-    else {}
+    else {
+        document.querySelector('.sidemenu').classList.add('noRes')
+        document.querySelector('.sidemenu').innerHTML = `
+            <h1>Oops!</h1>
+            <h3>Your search returned no results. <br><br> Check the spelling and try again</h3>
+        `
+
+        document.querySelector('.cont').classList.add("noRes")
+        document.querySelector('.cont').innerHTML = `
+            <h1>Click here to reset search criteria</h1>
+            <br><br>
+            <div class="refr"></div>
+        `
+
+        document.querySelector('.refr').addEventListener("click", () => {
+            let conf = window.confirm("Are you sure you want to reload?");
+
+            if (conf == true) {
+                window.location.assign("index.html");
+            }
+        })
+    }
 }
 
 else {display()}
