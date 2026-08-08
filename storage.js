@@ -2,24 +2,18 @@ const name = [
     "palo_alto",
     "the_perch",
     "tracen",
-    "palo_alto",
-    "the_perch",
-    "tracen",
-    "palo_alto",
-    "the_perch",
-    "tracen",
 ];
 
 const type = [
-    "Lot",
-    "House",
-    "Dorm"
+    "lot",
+    "house",
+    "dorm"
 ];
 
 const loc = [
-    "Baras",
-    "Antipolo",
-    "Tokyo"
+    "baras",
+    "antipolo",
+    "tokyo",
 ];
 
 const address = [
@@ -98,6 +92,12 @@ function display() {
                 </li>
             </div>
         `;
+
+
+        /*NEW SHIT, GOTTA DELETE
+        if(index == 0) {
+            document.getElementById('item0').classList.add("currentPage")
+        }*/
     });
     
     name.forEach((element, index) => {
@@ -111,6 +111,7 @@ function display() {
 
 //change style of hovered list item
 function showCurrent(highlight) {
+    console.log(highlight)
     document.getElementById(`item${highlight}`).classList.add("currentPage");
 }
 
@@ -140,7 +141,6 @@ function content(contIndex) {
 
 function scrolling(scroller, scrolled) {
     let contHeight = scrolled.scrollHeight - window.innerHeight;
-    console.log(`Height is ${contHeight}px`);
 
     scrolled.addEventListener("scroll", () => {
         let progress = (scrolled.scrollTop);
@@ -166,10 +166,14 @@ function scrolling(scroller, scrolled) {
                     event.preventDefault();
                     pos = event.clientY;
                 }
-    
+                
+                var y = 0;
+
+
                 
                 let perc = (Math.trunc(pos) - Math.trunc(Ypos.top)) / (Math.trunc(Ypos.bottom) - Math.trunc(Ypos.top))
 
+                
                 if(perc >= 0 && perc <= 1) {
                     //scroller.style.top = `calc(${perc * 100}% - (10% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
                     scroller.style.top = `calc(${perc * Ypos.bottom}px - (10% + clamp(7vh, 5vw, 10vh)) * ${perc})`;
@@ -180,8 +184,6 @@ function scrolling(scroller, scrolled) {
     
                 event.preventDefault();
                 
-                console.log("i am being touched")
-
                 document.addEventListener("mousemove", tracker, true)
                 
                 document.addEventListener("mouseup", () => {
