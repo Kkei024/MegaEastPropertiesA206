@@ -114,7 +114,12 @@ let typUniq = type.filter(onlyUnique)
 locUniq.forEach((element) => {
     document.querySelector('.locs').innerHTML += `
     <label for="${element}">
-        <input type="checkbox" name="location" id="${element}" value="${element}">${element}
+        <div class="check">
+            <div class="inner">
+                <input class="checkb" type="checkbox" name="location" id="${element}" value="${element}">
+            </div>
+        </div>
+        ${element}
     </label>
     `
 })
@@ -122,7 +127,12 @@ locUniq.forEach((element) => {
 typUniq.forEach((element) => {
     document.querySelector('.typs').innerHTML += `
     <label for="${element}">
-        <input type="checkbox" name="location" id="${element}" value="${element}">${element}
+        <div class="check">
+            <div class="inner">
+                <input class="checkb" type="checkbox" name="type" id="${element}" value="${element}">
+            </div>
+        </div>
+        ${element}
     </label>
     `
 })
