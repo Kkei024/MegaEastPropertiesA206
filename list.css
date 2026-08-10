@@ -16,6 +16,7 @@ input:is([type="text"]) {
     border-bottom: 2px solid white;
     margin-bottom: 1vh;
     font-size: 1.5vh;
+    color: white;
 }
 
 input:is([type="submit"]) {
