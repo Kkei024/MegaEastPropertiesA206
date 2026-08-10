@@ -16,7 +16,6 @@ input:is([type="text"]) {
     border-bottom: 2px solid white;
     margin-bottom: 1vh;
     font-size: 1.5vh;
-    color: white;
 }
 
 input:is([type="submit"]) {
@@ -26,6 +25,7 @@ input:is([type="submit"]) {
 
 input:is([type="submit"]):hover {
     border-color: aqua;
+    font-size: 2vh;
 }
 
 input:is([type="text"]):hover, input:is([type="text"]):focus {
@@ -63,7 +63,7 @@ input:is([type="text"]):hover, input:is([type="text"]):focus {
     .inner {
         width: 78%;
         height: 75%;
-        justify-self: center;
+        margin: auto;
         border-radius: 100%;
     }
 }
