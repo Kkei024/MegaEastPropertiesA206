@@ -19,10 +19,13 @@ input:is([type="text"]) {
     color: white;
 }
 
-input:is([type="submit"]):hover {
-    border-color: aqua;
+input:is([type="submit"]) {
     font-size: 2vh;
     color: white;
+}
+
+input:is([type="submit"]):hover {
+    border-color: aqua;
 }
 
 input:is([type="text"]):hover, input:is([type="text"]):focus {
